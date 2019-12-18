@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ## installation
 
@@ -20,3 +21,6 @@ dotnet add package YamlDotNet -v 8.0.0.0
 ```
 dotnet publish -c Release
 ```
+=======
+# yamock-cs
+>>>>>>> origin/master
