@@ -1438,6 +1438,28 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
+      },
+      "YamlDotNet/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/YamlDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/YamlDotNet.dll": {}
+        }
+      },
+      "yamock/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "YamlDotNet": "8.0.0"
+        },
+        "compile": {
+          "bin/placeholder/yamock.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/yamock.dll": {}
+        }
       }
     }
   },
@@ -5256,13 +5278,43 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "YamlDotNet/8.0.0": {
+      "sha512": "Ib8lKt7TlODREDFLOWef0OmxChsQlTsRSGGx7A6YH8d7Y+YrMg8Z/RneW5WAnDsfygg/Ao2r2ND1UNe0LLPMFw==",
+      "type": "package",
+      "path": "yamldotnet/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/net20/YamlDotNet.dll",
+        "lib/net20/YamlDotNet.xml",
+        "lib/net35-client/YamlDotNet.dll",
+        "lib/net35-client/YamlDotNet.xml",
+        "lib/net35/YamlDotNet.dll",
+        "lib/net35/YamlDotNet.xml",
+        "lib/net45/YamlDotNet.dll",
+        "lib/net45/YamlDotNet.xml",
+        "lib/netstandard1.3/YamlDotNet.dll",
+        "lib/netstandard1.3/YamlDotNet.xml",
+        "lib/netstandard2.1/YamlDotNet.dll",
+        "lib/netstandard2.1/YamlDotNet.xml",
+        "yamldotnet.8.0.0.nupkg.sha512",
+        "yamldotnet.nuspec"
+      ]
+    },
+    "yamock/1.0.0": {
+      "type": "project",
+      "path": "../yamoc-cs/yamock.csproj",
+      "msbuildProject": "../yamoc-cs/yamock.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.NET.Test.Sdk >= 16.2.0",
       "NUnit3TestAdapter >= 3.15.1",
-      "nunit >= 3.12.0"
+      "nunit >= 3.12.0",
+      "yamock >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5288,7 +5340,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "F:\\_work\\ct\\yamledhttp\\yamoc-cs\\yamock.csproj": {
+              "projectPath": "F:\\_work\\ct\\yamledhttp\\yamoc-cs\\yamock.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
