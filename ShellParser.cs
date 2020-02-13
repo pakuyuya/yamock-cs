@@ -1,8 +1,7 @@
-
 using System;
 using System.Collections.Generic;
 
-namespace yamledhttp
+namespace httpmock
 {
     public static class ShellParser {
         public static List<string> split(string command) {
