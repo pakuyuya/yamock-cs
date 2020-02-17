@@ -25,6 +25,25 @@ namespace httpmock.requestmatcher
             XmlDictionaryReader xmlReader =JsonReaderWriterFactory.CreateJsonReader(
                 Encoding.UTF8.GetBytes(context.requestBody), XmlDictionaryReaderQuotas.Max);
 
+            string json = @"
+            {
+                ""test"": ""a"",
+                ""parent"": {
+                    ""child"": 1,
+                    ""some"": false
+                }
+            }
+            ";
+            XmlDictionaryReader xmlReader2 =JsonReaderWriterFactory.CreateJsonReader(
+                Encoding.UTF8.GetBytes(json), XmlDictionaryReaderQuotas.Max);
+
+            while(xmlReader.Read()) {
+                Console.WriteLine(xmlReader2.NodeType);
+                Console.WriteLine(xmlReader2.Name);
+                Console.WriteLine(xmlReader2.Value);
+                Console.WriteLine(xmlReader2.ValueType);
+            }
+
             return false;
         }
     }

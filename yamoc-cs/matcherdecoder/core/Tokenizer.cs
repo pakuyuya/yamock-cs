@@ -4,17 +4,14 @@ using System.Text.RegularExpressions;
 
 namespace httpmock.matcherdecoder.core
 {
-    public class Tokenizer {
-        
-    }
-
-
     public interface IToken {
         int getTokenEndIndex(string s);
 
         void setToken(string s);
 
-         IToken[] getFollowableTokens();
+        IToken[] getFollowableTokens();
+
+        IToken newToken();
     }
 
     public class RootToken : IToken {
@@ -32,6 +29,10 @@ namespace httpmock.matcherdecoder.core
 
         public IToken[] getFollowableTokens() {
             return followableTokens;
+        }
+
+        public IToken newToken() {
+            return new RootToken();
         }
     }
     public class NameToken : IToken {
@@ -54,6 +55,10 @@ namespace httpmock.matcherdecoder.core
         public IToken[] getFollowableTokens() {
             return followableTokens;
         }
+
+        public IToken newToken() {
+            return new NameToken();
+        }
     }
 
     public class EqualToken : IToken {
@@ -66,7 +71,6 @@ namespace httpmock.matcherdecoder.core
             // do nothing
         }
 
-
         public static IToken[] followableTokens = new IToken[]{
             new DoubleQuotedValueToken()
         };
@@ -75,6 +79,9 @@ namespace httpmock.matcherdecoder.core
             return followableTokens;
         }
 
+        public IToken newToken() {
+            return new EqualToken();
+        }
     }
 
     public class DoubleQuotedValueToken : IToken {
@@ -116,5 +123,8 @@ namespace httpmock.matcherdecoder.core
             return followableTokens;
         }
 
+        public IToken newToken() {
+            return new DoubleQuotedValueToken();
+        }
     }
 }
