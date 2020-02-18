@@ -16,7 +16,7 @@ namespace httpmock.stringEvaluator.value
             return "{" + (Path ?? null) + "}";
         }
 
-        public override bool Equals(object? obj) {
+        public override bool Equals(object obj) {
             if (obj is BodyJsonValueEvaluator) {
                 var val = (BodyJsonValueEvaluator)obj;
                 return Path == val.Path;

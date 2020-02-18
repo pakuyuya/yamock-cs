@@ -15,7 +15,7 @@ namespace httpmock.stringEvaluator.value
             return "{" + (Value ?? null) + "}";
         }
 
-        public override bool Equals(object? obj) {
+        public override bool Equals(object obj) {
             if (obj is LiteralValueEvaluator) {
                 var val = (LiteralValueEvaluator)obj;
                 return Value == val.Value;
