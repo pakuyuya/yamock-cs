@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 
-namespace httpmock
+namespace httpmock.server
 {
     public class HttpServer
     {

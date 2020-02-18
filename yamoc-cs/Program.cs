@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using httpmock.server;
+
 namespace httpmock
 {
     class Program
