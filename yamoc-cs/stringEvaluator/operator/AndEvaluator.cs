@@ -1,10 +1,10 @@
-﻿using httpmock.requestmatcher;
+﻿using httpmock.server;
 
 namespace httpmock.stringEvaluator.oparator
 {
     public class AndEvaluator : OperatorEvaluator
     {
-        override public string evoluate(FilterContext context)
+        override public string evoluate(RequestMatchingContext context)
         {
             if (Left.evoluate(context) != StringEvaluator.TRUE) {
                 return StringEvaluator.FALSE;

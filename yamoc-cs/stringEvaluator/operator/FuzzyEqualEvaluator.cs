@@ -1,11 +1,10 @@
-﻿using httpmock.requestmatcher;
-
+﻿using httpmock.server;
 
 namespace httpmock.stringEvaluator.oparator
 {
     public class FuzzyEqualEvaluator : OperatorEvaluator
     {
-        override public string evoluate(FilterContext context)
+        override public string evoluate(RequestMatchingContext context)
         {
             return (Left.evoluate(context) == Right.evoluate(context))
                 ? StringEvaluator.TRUE

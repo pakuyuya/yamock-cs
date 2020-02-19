@@ -1,10 +1,10 @@
-﻿using httpmock.requestmatcher;
+﻿using httpmock.server;
 
 namespace httpmock.stringEvaluator
 {
     public interface IStringEvaluator
     {
-       string evoluate(FilterContext context);
+       string evoluate(RequestMatchingContext context);
     }
 
     public class StringEvaluator {

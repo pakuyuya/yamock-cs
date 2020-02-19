@@ -1,11 +1,11 @@
-using httpmock.requestmatcher;
+using httpmock.server;
 
 namespace httpmock.stringEvaluator {
     public abstract class OperatorEvaluator : IStringEvaluator {
         public IStringEvaluator Left { get; set; }
         public IStringEvaluator Right { get; set; }
 
-        abstract public string evoluate(FilterContext context);
+        abstract public string evoluate(RequestMatchingContext context);
 
         abstract public int getPriority();
 

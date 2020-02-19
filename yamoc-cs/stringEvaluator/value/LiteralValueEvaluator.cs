@@ -1,12 +1,11 @@
-using httpmock.requestmatcher;
-
+using httpmock.server;
 
 namespace httpmock.stringEvaluator.value
 {
     public class LiteralValueEvaluator : ValueEvaluator {
         public string Value { get; set; }
 
-        override public string evoluate(FilterContext context)
+        override public string evoluate(RequestMatchingContext context)
         {
             return Value;
         }
