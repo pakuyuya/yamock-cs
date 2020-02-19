@@ -2,12 +2,12 @@ using System.Net;
 using System.IO;
 
 namespace httpmock.server {
-    public class RequestResolver {
+    public class RequestProxy {
         public HttpListenerContext HttpContext { get; }
 
         private string body = null;
 
-        public RequestResolver(HttpListenerContext httpContext) {
+        public RequestProxy(HttpListenerContext httpContext) {
             HttpContext = httpContext;
         }
 

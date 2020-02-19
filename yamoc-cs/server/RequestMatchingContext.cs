@@ -1,10 +1,10 @@
 using System.Net;
 
 namespace httpmock.server {
-    public struct RequestMatchingContext
+    public class RequestMatchingContext
     {
-        public YamlPathInfo pathInfo;
-        public HttpListenerContext httpContext;
-        public string requestBody;
+        public YamlPathInfo PathInfo { get; set; }
+        public HttpListenerContext HttpContext { get; set; }
+        public RequestProxy Request { get; set; }
     }
 }
