@@ -1,11 +1,13 @@
 using System.Net;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace httpmock.server {
     public class RequestProxy {
         public HttpListenerContext HttpContext { get; }
 
-        private string body = null;
+        private string bodyCache = null;
+        private JObject jobjectCache = null;
 
         public RequestProxy(HttpListenerContext httpContext) {
             HttpContext = httpContext;
@@ -13,18 +15,24 @@ namespace httpmock.server {
 
         public string getBody() {
             var req = HttpContext.Request;
-            if (body == null) {
+            if (bodyCache == null) {
                 using (var reader = new StreamReader(req.InputStream, req.ContentEncoding))
                 {
-                    body = reader.ReadToEnd();
+                    bodyCache = reader.ReadToEnd();
                 }
             }
-            return body;
+            return bodyCache;
+        }
+
+        public JObject getJObject() {
+            if (jobjectCache == null) {
+                jobjectCache = JObject.Parse(getBody());
+            }
+            return jobjectCache;
         }
 
         public string getBodyJson(string key) {
-            // TODO:
-            return null;   
+            return (string) getJObject().SelectToken(key);
         }
     }
 }
