@@ -31,7 +31,7 @@ namespace httpmock.server {
             return jobjectCache;
         }
 
-        public string getBodyJson(string key) {
+        public string readBodyJson(string key) {
             return (string) getJObject().SelectToken(key);
         }
     }

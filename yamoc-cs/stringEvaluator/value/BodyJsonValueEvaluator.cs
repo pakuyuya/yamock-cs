@@ -7,8 +7,8 @@ namespace httpmock.stringEvaluator.value
 
         override public string evoluate(RequestMatchingContext context)
         {
-            // TODO:
-            return StringEvaluator.FALSE;
+            string value = context.Request.readBodyJson(Path);
+            return value;
         }
 
         public override string ToString() {
