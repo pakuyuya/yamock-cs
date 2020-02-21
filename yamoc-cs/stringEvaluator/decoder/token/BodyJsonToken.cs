@@ -1,7 +1,6 @@
 
 using System;
 using System.Text.RegularExpressions;
-using httpmock.stringEvaluator.oparator;
 using httpmock.stringEvaluator.value;
 
 namespace httpmock.stringEvaluator.decoder.token
@@ -14,10 +13,14 @@ namespace httpmock.stringEvaluator.decoder.token
         }
 
         public void setToken(string s) {
-            this.Path = s.Trim();
+            this.Path = s.Trim().Substring(9);
         }
 
         public string Path { get; set; }
+
+        public override string ToString() {
+            return Path;
+        }
 
         public static IToken[] followableTokens = TokenHelper.operatorTokens();
 

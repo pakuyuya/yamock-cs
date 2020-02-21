@@ -57,6 +57,7 @@ namespace httpmock.server
                 {
                     var prefix = string.Format("{0:000}: ", idx);
                     var req = context.Request;
+                    var requestProxy = new RequestProxy(context);
 
                     log.info(prefix + "--------------------------------------------------------------------------------");
 
@@ -66,15 +67,12 @@ namespace httpmock.server
                     log.headers(prefix, "[Headers] ", req.Headers);
                     if (req.HasEntityBody)
                     {
-                        using (var reader = new StreamReader(req.InputStream, req.ContentEncoding))
-                        {
-                            log.formatted(prefix, "[Body   ] ", reader.ReadToEnd());
-                        }
+                        log.formatted(prefix, "[Body   ] ", requestProxy.getBody());
                     }
 
                     log.info(prefix + "===== Response =====", ConsoleColor.DarkGreen);
 
-                    var pathInfo = findPath(context);
+                    var pathInfo = findPath(requestProxy, context);
                     if (!pathInfo.HasValue)
                     {
                         var headers = new Dictionary<string, string>();
@@ -121,10 +119,9 @@ namespace httpmock.server
             });
         }
 
-        YamlPathInfo? findPath(HttpListenerContext httpContext)
+        YamlPathInfo? findPath(RequestProxy requestProxy, HttpListenerContext httpContext)
         {
             var request = httpContext.Request;
-            var requestProxy = new RequestProxy(httpContext);
             string path = request.Url.LocalPath;
             string method = request.HttpMethod.ToLower();
 
