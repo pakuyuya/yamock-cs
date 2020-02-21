@@ -30,6 +30,7 @@ namespace httpmock
         public string path;
         public string methods;
         public string command;
+        public string filter;
         public YamlResponseInfo response;
     }
     public struct YamlResponseInfo {

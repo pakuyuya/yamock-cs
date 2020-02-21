@@ -1,8 +1,8 @@
 using NUnit.Framework;
-using httpmock.requestmatcher;
 using httpmock.stringEvaluator;
 using httpmock.stringEvaluator.oparator;
 using httpmock.stringEvaluator.value;
+using httpmock.stringEvaluator.decoder;
 
 namespace httpmock.matcherdecoder.Tests
 {

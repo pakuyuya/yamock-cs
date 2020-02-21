@@ -5,7 +5,7 @@ using httpmock.stringEvaluator;
 using httpmock.stringEvaluator.oparator;
 using httpmock.stringEvaluator.value;
 
-namespace httpmock.matcherdecoder.core
+namespace httpmock.stringEvaluator.decoder
 {
     public interface IToken {
         int getTokenEndIndex(string s);

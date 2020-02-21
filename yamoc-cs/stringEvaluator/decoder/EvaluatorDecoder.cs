@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using httpmock.stringEvaluator.decoder.token;
 
-using httpmock.requestmatcher;
-using httpmock.matcherdecoder.core;
-using httpmock.stringEvaluator;
-
-namespace httpmock.matcherdecoder
+namespace  httpmock.stringEvaluator.decoder
 {
     public class EvaluatorDecoder {
+        private static Dictionary<string, IStringEvaluator> decodeCache = new Dictionary<string, IStringEvaluator>();
         public static IStringEvaluator decode(string syntax) {
             List<IToken> tokens = parseToTokens(syntax);
-
-            return combineTokens(tokens);
+            if (decodeCache.ContainsKey(syntax)) {
+                return decodeCache[syntax];
+            }
+            return decodeCache[syntax] = combineTokens(tokens);
         }
 
         private static List<IToken> parseToTokens(string syntax) {

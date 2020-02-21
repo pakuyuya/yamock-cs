@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using httpmock.stringEvaluator;
+using httpmock.stringEvaluator.decoder;
 
 namespace httpmock.server
 {
@@ -72,7 +74,7 @@ namespace httpmock.server
 
                     log.info(prefix + "===== Response =====", ConsoleColor.DarkGreen);
 
-                    var pathInfo = findPath(req.Url.LocalPath, req.HttpMethod);
+                    var pathInfo = findPath(context);
                     if (!pathInfo.HasValue)
                     {
                         var headers = new Dictionary<string, string>();
@@ -119,15 +121,37 @@ namespace httpmock.server
             });
         }
 
-        YamlPathInfo? findPath(string path, string method)
+        YamlPathInfo? findPath(HttpListenerContext httpContext)
         {
-            method = method.ToLower();
+            var request = httpContext.Request;
+            var requestProxy = new RequestProxy(httpContext);
+            string path = request.Url.LocalPath;
+            string method = request.HttpMethod.ToLower();
+
             foreach (var p in settings.paths)
             {
-                if (p.path == path && (string.IsNullOrEmpty(p.methods) || p.methods.ToLower().Split(',').Contains(method)))
-                {
-                    return p;
+                if (p.path != path) {
+                    continue;
                 }
+                if (!string.IsNullOrEmpty(p.methods) && !p.methods.ToLower().Split(',').Contains(method))
+                {
+                    continue;
+                }
+                if (!string.IsNullOrEmpty(p.filter)) {
+                    try {
+                        IStringEvaluator evoluator = EvaluatorDecoder.decode(p.filter);
+                        var context = new RequestMatchingContext();
+                        context.PathInfo = p;
+                        context.Request = requestProxy;
+                        context.HttpContext = httpContext;
+                        if (evoluator.evoluate(context) != StringEvaluator.TRUE) {
+                            continue;
+                        }
+                    } catch (FormatException ex) {
+                        log.error("ERROR! filter syntax is broken. filter: " + p.filter + " reason:" + ex.ToString());
+                    }
+                }
+                return p;
             }
             return null;
         }
