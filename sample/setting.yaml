@@ -1,0 +1,46 @@
+port: 8888
+paths:
+  # matching GET,POST /hello
+  - path: /hello
+    methods: get,post
+    response:
+      status: 200
+      bodyfile: body/hello.txt
+  # matching GET /wait/500ms
+  - path: /wait/500ms
+    methods: get
+    wait: 500
+    response:
+      status: 200
+  # matching GET /command/ping
+  - path: /command/ping
+    methods: get
+    command: ping -n 10 localhost
+    response:
+      status: 200
+  # matching GET /selector
+  - path: /selector
+    methods: get
+    response:
+      status: 200
+      bodyfile: body/foo.json
+      headers:
+        Content-Type: application/json
+  # matching POST /selector with body { "id": 10 }
+  - path: /selector
+    methods: post
+    filter: bodyjson.id == 10
+    response:
+      status: 200
+      bodyfile: body/bar.json
+      headers:
+        Content-Type: application/json
+  # matching POST /selector with request do not match conditions before this.
+  - path: /selector
+    methods: post
+    response:
+      status: 200
+      bodyfile: body/baz.json
+      headers:
+        Content-Type: application/json
+    
