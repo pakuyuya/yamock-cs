@@ -103,7 +103,6 @@ namespace httpmock.server
 
                     int statudCode = 200;
                     var respHeaders = new Dictionary<string, string>();
-                    string body = null;
                     var yamlres = p.response;
                     statudCode = int.Parse(yamlres.status ?? "200");
                     if (yamlres.headers != null)
@@ -113,7 +112,9 @@ namespace httpmock.server
                             respHeaders[e.Key] = e.Value;
                         }
                     }
-                    body = (yamlres.bodyfile != null) ? readFile(yamlres.bodyfile) : null;
+                    string body = "";
+                    body += yamlres.bodytext ?? "";
+                    body += readFile(yamlres.bodyfile) ?? "";
 
                     taskWait.Wait();
 
@@ -188,6 +189,10 @@ namespace httpmock.server
 
         string readFile(string path)
         {
+            if (path == null) {
+                return null;
+            }
+
             if (!File.Exists(path))
             {
                 log.error(string.Format("{0} is not exists. responsing with no body.", path));

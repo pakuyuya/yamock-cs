@@ -45,6 +45,7 @@ namespace httpmock
     public struct YamlResponseInfo {
         public string status;
         public Dictionary<string, string> headers;
+        public string bodytext;
         public string bodyfile;
     }
 }
