@@ -1,6 +1,6 @@
-using httpmock.server;
+using yamoc.server;
 
-namespace httpmock.stringEvaluator.value
+namespace yamoc.stringEvaluator.value
 {
     public class ParamValueEvaluator : ValueEvaluator {
         public string Param { get; set; }

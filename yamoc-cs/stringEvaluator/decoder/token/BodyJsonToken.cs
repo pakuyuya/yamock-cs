@@ -1,9 +1,9 @@
 
 using System;
 using System.Text.RegularExpressions;
-using httpmock.stringEvaluator.value;
+using yamoc.stringEvaluator.value;
 
-namespace httpmock.stringEvaluator.decoder.token
+namespace yamoc.stringEvaluator.decoder.token
 {
     public class BodyJsonToken : IToken {
 

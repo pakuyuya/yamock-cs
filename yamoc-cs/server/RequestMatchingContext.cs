@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace httpmock.server {
+namespace yamoc.server {
     public class RequestMatchingContext
     {
         public YamlPathInfo PathInfo { get; set; }

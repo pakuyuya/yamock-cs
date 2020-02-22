@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using httpmock.server;
+using yamoc.server;
 
-namespace httpmock
+namespace yamoc
 {
     class Program
     {
@@ -15,7 +15,7 @@ namespace httpmock
         static void Main()
         {
             var version = "1.0.0";
-            log.info("httpmock version " + version);
+            log.info("yamoc version " + version);
 
             var args = Environment.GetCommandLineArgs();
             var yamlPath = args.Length > 1 ? args[1] : "setting.yaml";

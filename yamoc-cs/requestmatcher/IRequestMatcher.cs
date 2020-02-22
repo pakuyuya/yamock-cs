@@ -1,6 +1,6 @@
-﻿using httpmock.server;
+﻿using yamoc.server;
 
-namespace httpmock.requestmatcher
+namespace yamoc.requestmatcher
 {
     public interface IRequestMatcher
     {

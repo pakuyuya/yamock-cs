@@ -1,6 +1,6 @@
-using httpmock.server;
+using yamoc.server;
 
-namespace httpmock.stringEvaluator.value
+namespace yamoc.stringEvaluator.value
 {
     public class BodyJsonValueEvaluator : ValueEvaluator {
         public string Path { get; set; }

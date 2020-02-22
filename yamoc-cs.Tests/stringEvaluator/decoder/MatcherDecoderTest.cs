@@ -1,8 +1,8 @@
 using NUnit.Framework;
-using httpmock.stringEvaluator.oparator;
-using httpmock.stringEvaluator.value;
+using yamoc.stringEvaluator.oparator;
+using yamoc.stringEvaluator.value;
 
-namespace httpmock.stringEvaluator.decoder.Tests
+namespace yamoc.stringEvaluator.decoder.Tests
 {
     [TestFixture]
     public class MatcherDecoderTest

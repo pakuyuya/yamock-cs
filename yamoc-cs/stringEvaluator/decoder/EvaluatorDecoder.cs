@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using httpmock.stringEvaluator.decoder.token;
+using yamoc.stringEvaluator.decoder.token;
 
-namespace  httpmock.stringEvaluator.decoder
+namespace  yamoc.stringEvaluator.decoder
 {
     public class EvaluatorDecoder {
         private static Dictionary<string, IStringEvaluator> decodeCache = new Dictionary<string, IStringEvaluator>();

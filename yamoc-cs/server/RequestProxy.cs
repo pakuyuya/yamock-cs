@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
-namespace httpmock.server {
+namespace yamoc.server {
     public class RequestProxy {
         public HttpListenerContext HttpContext { get; }
 

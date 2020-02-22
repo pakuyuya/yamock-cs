@@ -1,11 +1,11 @@
 
 using System;
 using System.Text.RegularExpressions;
-using httpmock.stringEvaluator;
-using httpmock.stringEvaluator.oparator;
-using httpmock.stringEvaluator.value;
+using yamoc.stringEvaluator;
+using yamoc.stringEvaluator.oparator;
+using yamoc.stringEvaluator.value;
 
-namespace httpmock.stringEvaluator.decoder.token
+namespace yamoc.stringEvaluator.decoder.token
 {
     public interface IToken {
         int getTokenEndIndex(string s);

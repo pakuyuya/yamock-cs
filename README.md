@@ -37,7 +37,7 @@ yamoc setting.yaml
 3. access to localhost
 
 ```
-httpmock version 1.0.0
+yamoc version 1.0.0
 
    using `setting.yaml`
 

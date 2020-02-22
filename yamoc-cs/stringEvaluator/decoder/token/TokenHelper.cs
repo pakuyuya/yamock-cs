@@ -1,5 +1,5 @@
 
-namespace httpmock.stringEvaluator.decoder.token
+namespace yamoc.stringEvaluator.decoder.token
 {
     class TokenHelper {
         public static IToken[] operatorTokens () {

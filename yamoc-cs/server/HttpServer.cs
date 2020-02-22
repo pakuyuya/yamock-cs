@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
-using httpmock.stringEvaluator;
-using httpmock.stringEvaluator.decoder;
+using yamoc.stringEvaluator;
+using yamoc.stringEvaluator.decoder;
 
-namespace httpmock.server
+namespace yamoc.server
 {
     public class HttpServer
     {

@@ -3,7 +3,7 @@ using System;
 using System.Text;
 using System.Collections.Specialized;
 
-namespace httpmock
+namespace yamoc
 {
     public class Logging
     {

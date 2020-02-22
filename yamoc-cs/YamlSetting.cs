@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using YamlDotNet.Serialization;
 
-namespace httpmock
+namespace yamoc
 {
     public static class YamlSettingsUtil
     {

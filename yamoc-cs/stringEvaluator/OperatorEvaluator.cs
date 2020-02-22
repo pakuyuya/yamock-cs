@@ -1,6 +1,6 @@
-using httpmock.server;
+using yamoc.server;
 
-namespace httpmock.stringEvaluator {
+namespace yamoc.stringEvaluator {
     public abstract class OperatorEvaluator : IStringEvaluator {
         public IStringEvaluator Left { get; set; }
         public IStringEvaluator Right { get; set; }

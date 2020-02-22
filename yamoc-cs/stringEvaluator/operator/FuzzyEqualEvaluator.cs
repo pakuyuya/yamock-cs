@@ -1,6 +1,6 @@
-﻿using httpmock.server;
+﻿using yamoc.server;
 
-namespace httpmock.stringEvaluator.oparator
+namespace yamoc.stringEvaluator.oparator
 {
     public class FuzzyEqualEvaluator : OperatorEvaluator
     {
