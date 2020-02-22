@@ -84,6 +84,8 @@ namespace httpmock.server
 
                     var p = pathInfo.Value;
 
+                    Task taskWait = Task.Delay(p.wait > 0 ? p.wait : 0);
+
                     if (p.command != null)
                     {
                         log.info(prefix + "command: " + p.command);
@@ -115,6 +117,8 @@ namespace httpmock.server
                         }
                     }
                     body = (yamlres.bodyfile != null) ? readFile(yamlres.bodyfile) : null;
+
+                    taskWait.Wait();
 
                     writeResponse(context, prefix, statudCode, body, respHeaders);
                 }

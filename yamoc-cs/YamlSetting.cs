@@ -31,6 +31,7 @@ namespace httpmock
         public string methods;
         public string command;
         public string filter;
+        public int wait;
         public YamlResponseInfo response;
     }
     public struct YamlResponseInfo {
