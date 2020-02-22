@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.Diagnostics;
 using httpmock.stringEvaluator;
 using httpmock.stringEvaluator.decoder;
 
@@ -85,11 +86,19 @@ namespace httpmock.server
 
                     if (p.command != null)
                     {
+                        log.info(prefix + "command: " + p.command);
+
                         List<string> commands = ShellParser.split(p.command);
-                        var psi = new System.Diagnostics.ProcessStartInfo();
-                        psi.FileName = commands[0];
-                        psi.Arguments = string.Join(" ", commands.GetRange(1, commands.Count - 1));
-                        System.Diagnostics.Process.Start(psi).WaitForExit();
+                        var process = new Process();
+                        var startInfo = new ProcessStartInfo
+                        {
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                            FileName = commands[0],
+                            Arguments = string.Join(" ", commands.GetRange(1, commands.Count - 1))
+                        };
+                        process.StartInfo = startInfo;
+                        process.Start();
+                        process.WaitForExit();
                     }
 
                     int statudCode = 200;
