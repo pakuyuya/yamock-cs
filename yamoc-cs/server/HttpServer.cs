@@ -101,10 +101,12 @@ namespace httpmock.server
                         process.WaitForExit();
                     }
 
-                    int statudCode = 200;
-                    var respHeaders = new Dictionary<string, string>();
                     var yamlres = p.response;
+
+                    int statudCode = 200;
                     statudCode = int.Parse(yamlres.status ?? "200");
+
+                    var respHeaders = new Dictionary<string, string>();
                     if (yamlres.headers != null)
                     {
                         foreach (var e in yamlres.headers)
@@ -112,6 +114,10 @@ namespace httpmock.server
                             respHeaders[e.Key] = e.Value;
                         }
                     }
+                    if (!respHeaders.ContainsKey("Content-Type") && !respHeaders.ContainsKey("ContentType")) {
+                        respHeaders["Content-Type"] = "text/plain";
+                    }
+
                     string body = "";
                     body += yamlres.bodytext ?? "";
                     body += readFile(yamlres.bodyfile) ?? "";
