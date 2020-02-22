@@ -1,6 +1,12 @@
 port: 8888
+
 default:
+  headers:
+    Content-Type: text/plain
+
+notfound:
   status: 404
+  bodytext: '{ "message": "404 not found" }'
   headers:
     Content-Type: application/json
 
@@ -10,42 +16,48 @@ paths:
     methods: get,post
     response:
       status: 200
-      bodyfile: body/hello.txt
+      bodytext: hello
+
   # matching GET /wait/500ms
   - path: /wait/500ms
     methods: get
     wait: 500
     response:
       status: 200
+
   # matching GET /command/ping
   - path: /command/ping
     methods: get
     command: ping -n 10 localhost
     response:
       status: 200
+
   # matching GET /selector
   - path: /selector
     methods: get
     response:
       status: 200
-      bodyfile: body/foo.json
-      headers:
-        Content-Type: application/json
+      bodytext: match GET
+
   # matching POST /selector with body { "id": 10 }
   - path: /selector
     methods: post
     filter: bodyjson.id == 10
     response:
       status: 200
-      bodyfile: body/bar.json
-      headers:
-        Content-Type: application/json
+      bodytext: match POST, bodyjson.id == 10
+
+  # matching POST /selector?id=10
+  - path: /selector
+    methods: post
+    filter: param.id == 10
+    response:
+      status: 200
+      bodytext: match POST, param.id == 10
+
   # matching POST /selector with request do not match conditions before this.
   - path: /selector
     methods: post
     response:
       status: 200
-      bodyfile: body/baz.json
-      headers:
-        Content-Type: application/json
-    
+      bodytext: match POST

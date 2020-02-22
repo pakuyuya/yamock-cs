@@ -77,7 +77,7 @@ namespace httpmock.server
                     if (!pathInfo.HasValue)
                     {
                         pathInfo = new YamlPathInfo{
-                            response = (YamlResponseInfo) settings.defaultResponse
+                            response = (YamlResponseInfo) settings.notfound
                         };
                     }
                     var p = pathInfo.Value;
@@ -102,25 +102,28 @@ namespace httpmock.server
                     }
 
                     var yamlres = p.response;
+                    var defres = settings.defaultResponse;
 
-                    int statudCode = 200;
-                    statudCode = int.Parse(yamlres.status ?? "200");
+                    int statudCode = int.Parse(yamlres.status ?? defres.status);
 
                     var respHeaders = new Dictionary<string, string>();
-                    if (yamlres.headers != null)
+                    var headers = yamlres.headers ?? defres.headers;
+                    if (headers != null)
                     {
-                        foreach (var e in yamlres.headers)
+                        foreach (var e in headers)
                         {
                             respHeaders[e.Key] = e.Value;
                         }
                     }
-                    if (!respHeaders.ContainsKey("Content-Type") && !respHeaders.ContainsKey("ContentType")) {
-                        respHeaders["Content-Type"] = "text/plain";
-                    }
 
                     string body = "";
-                    body += yamlres.bodytext ?? "";
-                    body += readFile(yamlres.bodyfile) ?? "";
+                    if (yamlres.bodytext != null || yamlres.bodyfile != null) {
+                        body += yamlres.bodytext ?? "";
+                        body += readFile(yamlres.bodyfile) ?? "";
+                    } else {
+                        body += defres.bodytext ?? "";
+                        body += readFile(defres.bodyfile) ?? "";
+                    }
 
                     taskWait.Wait();
 

@@ -19,7 +19,9 @@ namespace httpmock
                     .Build();
 
                 var result = deserializer.Deserialize<YamlSettings>(input);
-
+                if (result.notfound.status == null) {
+                    result.notfound.status = "404";
+                }
                 if (result.defaultResponse.status == null) {
                     result.defaultResponse.status = "404";
                 }
@@ -31,6 +33,7 @@ namespace httpmock
     public struct YamlSettings {
         public string port;
         public List<YamlPathInfo> paths;
+        public YamlResponseInfo notfound;
         [YamlMember(Alias = "default")]
         public YamlResponseInfo defaultResponse;
     }
