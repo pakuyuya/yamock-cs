@@ -76,12 +76,10 @@ namespace httpmock.server
                     var pathInfo = findPath(requestProxy, context);
                     if (!pathInfo.HasValue)
                     {
-                        var headers = new Dictionary<string, string>();
-                        headers.Add("Content-Type", "application/json");
-                        writeResponse(context, prefix, 404, "{\"message\":\"404: not found\"}", headers);
-                        return;
+                        pathInfo = new YamlPathInfo{
+                            response = (YamlResponseInfo) settings.defaultResponse
+                        };
                     }
-
                     var p = pathInfo.Value;
 
                     Task taskWait = Task.Delay(p.wait > 0 ? p.wait : 0);
@@ -105,7 +103,6 @@ namespace httpmock.server
 
                     int statudCode = 200;
                     var respHeaders = new Dictionary<string, string>();
-                    respHeaders["Content-Type"] = "application/json";
                     string body = null;
                     var yamlres = p.response;
                     statudCode = int.Parse(yamlres.status ?? "200");

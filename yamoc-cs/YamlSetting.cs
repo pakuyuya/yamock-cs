@@ -17,7 +17,13 @@ namespace httpmock
             using(var input = new StreamReader(path, Encoding.UTF8)) {
                 var deserializer = new DeserializerBuilder()
                     .Build();
-                return deserializer.Deserialize<YamlSettings>(input);
+
+                var result = deserializer.Deserialize<YamlSettings>(input);
+
+                if (result.defaultResponse.status == null) {
+                    result.defaultResponse.status = "404";
+                }
+                return result;
             }
         }
     }
@@ -25,6 +31,8 @@ namespace httpmock
     public struct YamlSettings {
         public string port;
         public List<YamlPathInfo> paths;
+        [YamlMember(Alias = "default")]
+        public YamlResponseInfo defaultResponse;
     }
     public struct YamlPathInfo {
         public string path;
