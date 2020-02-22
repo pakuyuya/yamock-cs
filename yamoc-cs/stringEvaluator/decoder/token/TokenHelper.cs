@@ -10,6 +10,7 @@ namespace httpmock.stringEvaluator.decoder.token
         public static IToken[] valueTokens () {
             return new IToken[]{
                 new BodyJsonToken(),
+                new ParamToken(),
                 new DoubleQuotedValueToken(),
                 new ValueToken()
             };

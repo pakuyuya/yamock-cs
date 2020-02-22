@@ -44,5 +44,10 @@ namespace httpmock.server {
             }
             return (string) getJObject().SelectToken(key);
         }
+
+        public string getQueryParameter(string param) {
+            var req = HttpContext.Request;
+            return req.QueryString.Get(param); 
+        }
     }
 }
