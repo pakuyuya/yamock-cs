@@ -27,7 +27,7 @@ namespace httpmock.server {
         }
 
         public JObject getJObject() {
-            if (jobjectCache == null) {
+            if (jobjectCache == null && getBody() != null) {
                 try {
                     jobjectCache = JObject.Parse(getBody());
                 } catch (JsonReaderException) {
